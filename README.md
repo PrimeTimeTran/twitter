@@ -16,26 +16,29 @@ To create a GIF, use [LiceCap](http://www.cockos.com/licecap/), [RecordIt](http:
 
 ## User Stories
 
-The following **required** functionalities are completed (this is a sample):
+The following **required** functionalities are completed:
 
-* [x] User can open app and see news articles from an [api](https://newsapi.org/docs/get-started).
-* [x] User can see the title of the article.
-* [x] User can see the published at date of the article.
-* [x] User can see the author of the article.
-* [x] User can see a description of the article.
-* [x] User can see an image of the article.
-* [x] User can click a link to navigate to the associated press of the article.
-* [x] User can search/sort through articles based on key words from an input.
-
-The following **additional** features are implemented:
-
-* [x] List anything else that you can get done to improve the page!
+* [x] User can sign in.
+* [x] User can sign out.
+* [x] User can make a new tweet.
+* [x] User is prompted to make a tweet using a custom prompt message which uses their name.
+* [x] User can see list of tweets.
+* [x] User can delete tweet if they are the one that made it.
+* [x] User can see who tweet was made by.
+* [x] User can see when a tweet was made.
+* [x] User can like tweet.
+* [x] User can unlike tweet.
+* [x] User can respond to a tweet by 'retweeting' 
+* [x] User can have tweet data saved(closing tab does not 'restart' application).
+* [x] User can see total number of tweets.
+* [x] User can see total number of likes.
+* [x] User can see total number of retweets.
 
 ## Time Spent and Lessons Learned
 
-Time spent: **X** hours spent in total.
+Time spent: **4** hours spent in total.
 
-Describe any challenges encountered while building the app.
+I learned how to implement a 'React-like' structure for the application using JS. After a few refactors the code ended up a lot cleaner. I also learned how forms work in bootstrap better. If properly setup they can fire actions on enter press without an event listener.
 
 ## License
 
