@@ -160,6 +160,7 @@ const checkLocalStorage = () => {
   if (isSignedIn) {
     document.getElementById('signInForm').style.visibility = 'hidden'
     document.getElementById('currentUserPrompt').innerHTML = getCurrentUser()
+    document.getElementById('userTweetInput').placeholder = `What's on your mind ${getCurrentUser()}?`
   } else {
     document.getElementById('signInForm').style.visibility = 'show'
     document.getElementById('currentUserOptions').style.visibility = 'hidden'

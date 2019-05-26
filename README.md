@@ -1,4 +1,4 @@
-# CoderSchool FTW -  PrimeTimeNews
+# CoderSchool FTW -  PrimeTimeTwitter
 
 Created with love by: Loi Tran
   
