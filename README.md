@@ -5,16 +5,56 @@ Created with love by: Loi Tran
 An application which has tweets, retweets, liking, signin, and delete functionlity using basic HTML, CSS, & ES6.
 
 ## Try it out
+
 Demo online at [this link.](https://modest-leavitt-5821bb.netlify.com/)
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories.
 ![Demo](./demo.gif)
+
+## State
+
+The following is an object which represents our application's `state`. Understanding how to work with this object is critical to how the application behaves.
+
+```javascript
+{
+  "tweets": [
+    {
+      "body": "Practice on many types of different applications",
+      "likes": [
+        "PrimeTimeTran",
+        "Phil"
+      ],
+      "retweets": [
+        {
+          "body": "Sounds like a good idea to me!",
+          "likes": [],
+          "createdAt": "2019-05-26T06:32:25.172Z",
+          "userName": "Chung2klee"
+        }
+      ],
+      "createdAt": "2019-05-26T05:13:17.363Z",
+      "userName": "BoomBoomRay"
+    },
+    {
+      "body": "Study hard to learn programming.",
+      "likes": [
+        "BoomBoomRay",
+        "PrimeTimeTran",
+        "Hieu"
+      ],
+      "retweets": [],
+      "createdAt": "2019-05-26T05:13:11.748Z",
+      "userName": "BoomBoomRay"
+    }
+  ],
+  "currentUser": "BoomBoomRay"
+}
+```
 
 ## User Stories
 
-The following **required** functionalities are completed:
+The following **functionalities** are completed:
 
 * [x] User can sign in.
 * [x] User can sign out.
