@@ -4,6 +4,9 @@ Created with love by: Loi Tran
   
 An application which has tweets, retweets, liking, signin, and delete functionlity using basic HTML, CSS, & ES6.
 
+## Try it out
+Demo online at [this link.](https://modest-leavitt-5821bb.netlify.com/)
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories.
@@ -22,6 +25,10 @@ The following **required** functionalities are completed:
 * [x] User can sign out.
 * [x] User can make a new tweet.
 * [x] User is prompted to make a tweet using a custom prompt message which uses their name.
+* [x] User is prompted on how many characters their tweet is.
+* [x] User cannot make a tweet over 140 characters.
+* [x] User will see black text is tweet is under 140 characters.
+* [x] User will see a red text prompt if the tweet is 140 characters.
 * [x] User can see list of tweets.
 * [x] User can delete tweet if they are the one that made it.
 * [x] User can see who tweet was made by.
@@ -38,7 +45,7 @@ The following **required** functionalities are completed:
 
 Time spent: **4** hours spent in total.
 
-I learned how to implement a 'React-like' structure for the application using JS. After a few refactors the code ended up a lot cleaner. I also learned how forms work in bootstrap better. If properly setup they can fire actions on enter press without an event listener.
+I learned how to implement a 'react-like' structure for the application using JS. After a few refactors the code ended up a lot cleaner. I also learned how forms work in bootstrap better. If properly setup they can fire actions on enter press without an event listener.
 
 ## License
 
