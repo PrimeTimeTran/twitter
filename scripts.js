@@ -18,25 +18,27 @@ const saveTweets = (tweets) => {
     tweets,
   }
   save(newState)
+  renderTweets()
 }
-
-const saveUser = newUserState => save(newUserState)
 
 const renderReTweetItem = ({
   body,
   userName,
   createdAt
 }) => `
-  <li>${body} by <span style="font-weight: bold">${userName || 'Anonymous'}</span>
-    <span style="color: grey; font-style: italic">${moment(createdAt).startOf('hour').fromNow()}</span>
+  <li style="font-size: 20px">${body}
+    <p>
+      <span style="color: #1282A2; font-weight: bold">${userName || 'Anonymous'}</span>
+      <span style="color: grey; font-style: italic">${moment(createdAt).startOf('hour').fromNow()}</span>
+    </p>
   </li>
 `
 
-const renderReTweets = ({
+const renderRetweets = ({
   retweets
 }) => retweets.map(renderReTweetItem).join('\n')
 
-const renderDeleteButtonIfMyTweet = (idx, userName) => {
+const renderDeleteButtonIfCurrentUsersTweet = (idx, userName) => {
   if (getApplicationState().currentUser === userName) return `<button href="#" onclick="onDelete(${idx})" class="btn btn-danger">Delete</button>`
   return ''
 }
@@ -50,15 +52,22 @@ const renderTweetItem = (tweet, idx) => {
     createdAt,
   } = tweet
   const formattedDate = moment(createdAt).startOf('hour').fromNow()
+  const retweetHTML = retweets.length > 0 ? `<ul style="list-style: none; margin-top: 1%">${renderRetweets(tweet)}</ul>` : ''
   return `
-      <li class="list-group-item" style="margin: 10px; border: 4px solid #001F54;">
+      <li class="list-group-item" style="margin: 10px; border: 4px solid #001F54">
         <h1 style="color: #001F54">${body}</h1>
         <hr>
-        <p>Posted by <span style="font-weight: bold">${userName || 'Anonymous'}</span> <span style="color: grey; font-style: italic">${formattedDate}</span></p>
-        <button href="#" onclick="onTweetLike(${idx})" class="btn btn-primary">${likes.length > 0 ? likes.length : ''} Like${likes.length > 1 ? 's' : ''} </button>
-        <button href="#" onclick="onReTweet(${idx})" class="btn btn-success">Retweet</button>
-        ${renderDeleteButtonIfMyTweet(idx, userName)}
-        ${retweets.length > 0 ? `<ul style="margin-top: 2%">${renderReTweets(tweet)}</ul>` : ''}
+        <p>
+          Posted by <span style="color: #1282A2; font-weight: bold">${userName || 'Anonymous'}</span> <span style="color: grey; font-style: italic">${formattedDate}</span>
+        </p>
+        <button href="#" onclick="onTweetLike(${idx})" class="btn btn-primary">
+          ${likes.length > 0 ? likes.length : ''} Like${likes.length > 1 ? 's' : ''} 
+        </button>
+        <button href="#" onclick="onRetweet(${idx})" class="btn btn-success">
+          Retweet
+        </button>
+        ${renderDeleteButtonIfCurrentUsersTweet(idx, userName)}
+        ${retweetHTML}
       </li>
   `
 }
@@ -79,7 +88,6 @@ const resetTweetInput = () => {
 const onDelete = (selectedTweetIdx) => {
   const tweets = tweetList().filter((_, idx) => idx !== selectedTweetIdx)
   saveTweets(tweets)
-  renderTweets()
 }
 
 const onAddTweet = () => {
@@ -97,11 +105,10 @@ const onAddTweet = () => {
 
   tweets.unshift(tweet)
   saveTweets(tweets)
-  renderTweets()
   resetTweetInput()
 }
 
-const onReTweet = idx => {
+const onRetweet = idx => {
   const tweets = tweetList()
   const body = prompt('Whats on your mind?')
 
@@ -113,10 +120,9 @@ const onReTweet = idx => {
     createdAt: new Date,
     userName: getCurrentUser(),
   }
-  tweets[idx].retweets.push(retweet)
+  tweets[idx].retweets.unshift(retweet)
 
   saveTweets(tweets)
-  renderTweets()
 }
 
 const onTweetLike = idx => {
@@ -131,7 +137,6 @@ const onTweetLike = idx => {
   }
 
   saveTweets(tweets)
-  renderTweets()
 }
 
 const onSignIn = () => {
@@ -141,7 +146,7 @@ const onSignIn = () => {
     currentUser: document.getElementById('userNameInput').value
   }
   document.getElementById('currentUserOptions').style.visibility = 'show'
-  saveUser(newState)
+  save(newState)
 }
 
 const onSignOut = () => {
@@ -152,30 +157,31 @@ const onSignOut = () => {
   }
   document.getElementById('signInForm').style.visibility = ''
   document.getElementById('currentUserOptions').style.visibility = 'hidden'
-  saveUser(newState)
+  save(newState)
 }
 
-const checkLocalStorage = () => {
+const setupFromLocalStorage = () => {
   const isSignedIn = getCurrentUser() !== ''
   if (isSignedIn) {
     document.getElementById('signInForm').style.visibility = 'hidden'
+    document.getElementById('currentUserOptions').style.visibility = ''
     document.getElementById('currentUserPrompt').innerHTML = getCurrentUser()
     document.getElementById('userTweetInput').placeholder = `What's on your mind ${getCurrentUser()}?`
   } else {
-    document.getElementById('signInForm').style.visibility = 'show'
+    document.getElementById('signInForm').style.visibility = ''
     document.getElementById('currentUserOptions').style.visibility = 'hidden'
     document.getElementById('currentUserPrompt').innerHTML = getApplicationState().currentUser
   }
 }
 
-checkLocalStorage()
+setupFromLocalStorage()
 
 const addInputEventListener = () => {
   document.getElementById('userTweetInput').addEventListener('input', function (_) {
     remainingCharacters = 140 - this.value.length
+    document.getElementById('userPrompt').style.color = 'black'
     if (remainingCharacters === 0) document.getElementById('userPrompt').style.color = 'red'
-    const userPrompt = `${remainingCharacters} characters remaining`
-    document.getElementById('userPrompt').innerHTML = userPrompt
+    document.getElementById('userPrompt').innerHTML = `${remainingCharacters} characters remaining`
   })
 }
 
