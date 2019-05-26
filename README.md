@@ -2,7 +2,7 @@
 
 Created with love by: Loi Tran
   
-An application which requests data from an api and renders it so that users can catch up on what's going on around the world.
+An application which has tweets, retweets, liking, signin, and delete functionlity using basic HTML, CSS, & ES6.
 
 ## Video Walkthrough
 
@@ -39,7 +39,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2019] [Loi Tran]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
