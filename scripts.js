@@ -21,12 +21,13 @@ const saveTweets = (tweets) => {
   renderTweets()
 }
 
-const renderReTweetItem = ({
+const renderRetweetItem = ({
   body,
   userName,
   createdAt
 }) => `
-  <li style="font-size: 20px">${body}
+  <li style="font-size: 20px">
+    ${body}
     <p>
       <span style="color: #1282A2; font-weight: bold">${userName || 'Anonymous'}</span>
       <span style="color: grey; font-style: italic">${moment(createdAt).startOf('hour').fromNow()}</span>
@@ -36,7 +37,7 @@ const renderReTweetItem = ({
 
 const renderRetweets = ({
   retweets
-}) => retweets.map(renderReTweetItem).join('\n')
+}) => retweets.map(renderRetweetItem).join('\n')
 
 const renderDeleteButtonIfCurrentUsersTweet = (idx, userName) => {
   if (getApplicationState().currentUser === userName) return `<button href="#" onclick="onDelete(${idx})" class="btn btn-danger">Delete</button>`
@@ -90,38 +91,41 @@ const onDelete = (selectedTweetIdx) => {
   saveTweets(tweets)
 }
 
-const onAddTweet = () => {
-  const body = document.getElementById('userTweetInput').value
-  if (body.length < 1) return
-  const tweet = {
+const makeTweetObject = body => {
+  return {
     body,
     likes: [],
     retweets: [],
     createdAt: new Date,
     userName: getCurrentUser()
   }
+}
 
+const onAddTweet = () => {
+  const body = document.getElementById('userTweetInput').value
+  if (body.length < 1) return
+  const tweet = makeTweetObject(body)
   const tweets = tweetList()
-
   tweets.unshift(tweet)
   saveTweets(tweets)
   resetTweetInput()
 }
 
-const onRetweet = idx => {
-  const tweets = tweetList()
-  const body = prompt('Whats on your mind?')
-
-  if (body.length < 1) return
-
-  const retweet = {
+const makeRetweetObject = body => {
+  return {
     body,
     likes: [],
     createdAt: new Date,
     userName: getCurrentUser(),
   }
-  tweets[idx].retweets.unshift(retweet)
+}
 
+const onRetweet = idx => {
+  const tweets = tweetList()
+  const body = prompt('Whats on your mind?')
+  if (body.length < 1) return
+  const retweet = makeRetweetObject(body)
+  tweets[idx].retweets.unshift(retweet)
   saveTweets(tweets)
 }
 
@@ -160,17 +164,25 @@ const onSignOut = () => {
   save(newState)
 }
 
+const setUpPageForSignedInUser = () => {
+  document.getElementById('signInForm').style.visibility = 'hidden'
+  document.getElementById('currentUserOptions').style.visibility = ''
+  document.getElementById('currentUserPrompt').innerHTML = getCurrentUser()
+  document.getElementById('userTweetInput').placeholder = `What's on your mind ${getCurrentUser()}?`
+}
+
+const setupPageForNonSignedInUser = () => {
+  document.getElementById('signInForm').style.visibility = ''
+  document.getElementById('currentUserOptions').style.visibility = 'hidden'
+  document.getElementById('currentUserPrompt').innerHTML = getApplicationState().currentUser
+}
+
 const setupFromLocalStorage = () => {
   const isSignedIn = getCurrentUser() !== ''
   if (isSignedIn) {
-    document.getElementById('signInForm').style.visibility = 'hidden'
-    document.getElementById('currentUserOptions').style.visibility = ''
-    document.getElementById('currentUserPrompt').innerHTML = getCurrentUser()
-    document.getElementById('userTweetInput').placeholder = `What's on your mind ${getCurrentUser()}?`
+    setUpPageForSignedInUser()
   } else {
-    document.getElementById('signInForm').style.visibility = ''
-    document.getElementById('currentUserOptions').style.visibility = 'hidden'
-    document.getElementById('currentUserPrompt').innerHTML = getApplicationState().currentUser
+    setupPageForNonSignedInUser()
   }
 }
 

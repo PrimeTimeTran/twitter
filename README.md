@@ -1,20 +1,17 @@
-# CoderSchool FTW -  PrimeTimeTwitter
-
-Created with love by: Loi Tran
+# CoderSchool FTW - Twitter
   
-An application which has tweets, retweets, liking, signin, and delete functionlity using basic HTML, CSS, & ES6.
+> An tweet, retweet, liking, signin, and delete functionality application using basic HTML, CSS, & ES6.
 
-## Try it out
+Created with ❤️ by: Loi Tran
+## [Demo](https://modest-leavitt-5821bb.netlify.com/)
 
-Demo online at [this link.](https://modest-leavitt-5821bb.netlify.com/)
-
-## Video Walkthrough
+## Walkthrough 
 
 ![Demo](./demo.gif)
 
-## State
+## Overview
 
-The following is an object which represents our application's `state`. Understanding how to work with this object is critical to how the application behaves.
+The following is an [JS object](https://www.w3schools.com/js/js_objects.asp) which represents our application's `state`. Understanding how to work with this object is critical implementing the behavior of this application.
 
 ```javascript
 {
@@ -84,16 +81,16 @@ I learned how to implement a 'react-like' structure for the application using JS
 
 ## License
 
-    Copyright [2019] [Loi Tran]
+Copyright [2019] [Loi Tran]
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-        http://www.apache.org/licenses/LICENSE-2.0
+    http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
