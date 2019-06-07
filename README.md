@@ -1,13 +1,13 @@
 # CoderSchool FTW - Twitter
-  
+
 > An tweet, retweet, liking, signin, and delete functionality application using basic HTML, CSS, & ES6.
 
-Created with ❤️ by: Loi Tran
-## [Demo](https://modest-leavitt-5821bb.netlify.com/)
+## [💡Demo](https://modest-leavitt-5821bb.netlify.com/)
 
-## Walkthrough 
+## Walkthrough
 
 ![Demo](./demo.gif)
+Created with ❤️by: **Loi Tran** 👨‍💻📚
 
 ## Overview
 
@@ -55,19 +55,20 @@ The following **functionalities** are completed:
 
 * [x] User can sign in.
 * [x] User can sign out.
-* [x] User can make a new tweet.
-* [x] User is prompted to make a tweet using a custom prompt message which uses their name.
+* [x] User can create a new tweet.
+* [x] User is prompted to create a tweet using a custom prompt message which incorporates their name.
 * [x] User is prompted on how many characters their tweet is.
 * [x] User cannot make a tweet over 140 characters.
-* [x] User will see black text is tweet is under 140 characters.
-* [x] User will see a red text prompt if the tweet is 140 characters.
+* [x] User will see black text for the prompt if a tweet is under 140 characters.
+* [x] User will see red text for the prompt if a tweet is 140 characters.
+* [x] User cannot type more than 140 characters.
 * [x] User can see list of tweets.
 * [x] User can delete tweet if they are the one that made it.
-* [x] User can see who tweet was made by.
-* [x] User can see when a tweet was made.
+* [x] User can see who a tweet was created by.
+* [x] User can see when a tweet was reated.
 * [x] User can like tweet.
 * [x] User can unlike tweet.
-* [x] User can respond to a tweet by 'retweeting' 
+* [x] User can respond to a tweet by 'retweeting'.
 * [x] User can have tweet data saved(closing tab does not 'restart' application).
 * [x] User can see total number of tweets.
 * [x] User can see total number of likes.
